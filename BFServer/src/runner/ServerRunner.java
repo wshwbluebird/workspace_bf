@@ -9,6 +9,8 @@ public class ServerRunner {
 	}
 	
 	public static void main(String[] args) {
+		System.out.println("ZXc");
 		new ServerRunner();
+		System.out.println("c");
 	}
 }

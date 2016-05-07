@@ -16,7 +16,7 @@ public class ExecuteServiceImpl implements ExecuteService {
 		// TODO Auto-generated method stub
 		char[] chararray  = code.toCharArray();
 		if(param.length()!=code.chars().mapToLong(t->t==','?1:0).sum())
-			System.out.println("wrong");
+			System.out.println("&wrong#");
 		else{
 		long much = code.chars().mapToLong(t->t=='>'?1:0).sum();
 		char[] inputvalue = param.toCharArray();
@@ -51,7 +51,7 @@ public class ExecuteServiceImpl implements ExecuteService {
 		}
 		return ans;
 		}
-		return "Wrong";
+		return "*Wrong*";
 	}
 
 }

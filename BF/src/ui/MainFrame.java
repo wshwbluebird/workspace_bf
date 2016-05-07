@@ -28,7 +28,11 @@ public class MainFrame extends JFrame {
 
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("File");
-		menuBar.add(fileMenu);
+		JMenu executeMenu = new JMenu("Run");
+		JMenu login = new JMenu("login");
+//		login.setl
+//		menuBar.add(fileMenu);
+		menuBar.add(executeMenu);
 		JMenuItem newMenuItem = new JMenuItem("New");
 		fileMenu.add(newMenuItem);
 		JMenuItem openMenuItem = new JMenuItem("Open");
@@ -39,10 +43,10 @@ public class MainFrame extends JFrame {
 		fileMenu.add(runMenuItem);
 		frame.setJMenuBar(menuBar);
 
-		newMenuItem.addActionListener(new MenuItemActionListener());
-		openMenuItem.addActionListener(new MenuItemActionListener());
+		newMenuItem.addActionListener(new fileMenuItemActionListener());
+		openMenuItem.addActionListener(new fileMenuItemActionListener());
 		saveMenuItem.addActionListener(new SaveActionListener());
-		runMenuItem.addActionListener(new MenuItemActionListener());
+		runMenuItem.addActionListener(new fileMenuItemActionListener());
 
 		textArea = new JTextArea();
 		textArea.setMargin(new Insets(10, 10, 10, 10));
@@ -60,7 +64,7 @@ public class MainFrame extends JFrame {
 		frame.setVisible(true);
 	}
 
-	class MenuItemActionListener implements ActionListener {
+	class fileMenuItemActionListener implements ActionListener {
 		/**
 		 * 子菜单响应事件
 		 */
@@ -68,7 +72,15 @@ public class MainFrame extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			String cmd = e.getActionCommand();
 			if (cmd.equals("Open")) {
-				textArea.setText("Open");
+				String value;
+				try {
+					value = RemoteHelper.getInstance().getIOService().readFile( "admin", "code");
+				} catch (RemoteException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					value = "nofile";
+				}
+				textArea.setText(value);
 			} else if (cmd.equals("Save")) {
 				textArea.setText("Save");
 			} else if (cmd.equals("Run")) {

@@ -8,6 +8,7 @@ import java.rmi.RemoteException;
 import rmi.RemoteHelper;
 import service.IOService;
 import ui.MainFrame;
+import ui.MainFrame2;
 
 public class ClientRunner {
 	private RemoteHelper remoteHelper;
@@ -20,6 +21,7 @@ public class ClientRunner {
 	private void linkToServer() {
 		try {
 			remoteHelper = RemoteHelper.getInstance();
+			System.out.println("ready to link");
 			remoteHelper.setRemote(Naming.lookup("rmi://localhost:8888/DataRemoteObject"));
 			System.out.println("linked");
 		} catch (MalformedURLException e) {
@@ -32,7 +34,7 @@ public class ClientRunner {
 	}
 	
 	private void initGUI() {
-		MainFrame mainFrame = new MainFrame();
+		MainFrame2 mainFrame = new MainFrame2();
 	}
 	
 	public void test(){
