@@ -21,6 +21,8 @@ public class fileMenuItemActionListener implements ActionListener {
 			MainFrame2.newfileD.setBounds(500, 360, 400, 180);
 			MainFrame2.newfileD.show();
 			MainFrame2.textAreacode.setText("");
+			MainFrame2.urcontrol = new undoredoController();
+			System.out.println("new make");
 		}
 	}
 }

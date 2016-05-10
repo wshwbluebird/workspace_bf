@@ -21,6 +21,8 @@ public class fileOpenmake implements ActionListener{
   				String t = RemoteHelper.getInstance().getIOService().readFile(MainFrame2.username, last);
   				System.out.println("text:    "+t);
   				MainFrame2.textAreacode.setText(t);
+  				MainFrame2.urcontrol = new undoredoController();
+  				System.out.println("opne make");
   			}
 			fileListInfo = RemoteHelper.getInstance().getIOService().readFileList(MainFrame2.username);
 			System.out.println("fileinfo:"+fileListInfo  );
@@ -42,6 +44,7 @@ public class fileOpenmake implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String filename = e.getActionCommand();
 		MainFrame2.CurrentFileName = filename;
+		MainFrame2.filename.setText(MainFrame2.CurrentFileName);
 		String value;
 		try {
 			value = RemoteHelper.getInstance().getIOService().readFile( MainFrame2.username, filename);
@@ -52,6 +55,7 @@ public class fileOpenmake implements ActionListener{
 		}
 		MainFrame2.textAreacode.setText(value);
 		MainFrame2.resultLabel.setText("result");
+		MainFrame2.urcontrol = new undoredoController();
 		new versionmake();
 		
 	}

@@ -5,12 +5,14 @@ import java.rmi.server.UnicastRemoteObject;
 
 import service.ExecuteService;
 import service.IOService;
+import service.TempService;
 import service.UserService;
 import serviceImpl.ExecuteServiceImpl;
 import serviceImpl.IOServiceImpl;
+import serviceImpl.TempServiceImpl;
 import serviceImpl.UserServiceImpl;
 
-public class DataRemoteObject extends UnicastRemoteObject implements IOService, UserService, ExecuteService{
+public class DataRemoteObject extends UnicastRemoteObject implements IOService, UserService, ExecuteService,TempService{
 	/**
 	 * 
 	 */
@@ -18,10 +20,12 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	private IOService iOService;
 	private UserService userService;
 	private ExecuteService executeService;
+	private TempService tempService;
 	protected DataRemoteObject() throws RemoteException {
 		iOService = new IOServiceImpl();
 		userService = new UserServiceImpl();
 		executeService = new ExecuteServiceImpl();
+		tempService = new TempServiceImpl();
 	}
 
 	@Override
@@ -77,6 +81,18 @@ public class DataRemoteObject extends UnicastRemoteObject implements IOService, 
 	public boolean signup(String username, String password) throws RemoteException {
 		// TODO Auto-generated method stub
 		return userService.signup(username, password);
+	}
+
+	@Override
+	public boolean createTempFile(String code, int pointer) throws RemoteException {
+		// TODO Auto-generated method stub
+		return tempService.createTempFile(code,pointer);
+	}
+
+	@Override
+	public String getPointFile(int pointer) throws RemoteException {
+		// TODO Auto-generated method stub
+		return tempService.getPointFile(pointer);
 	}
 
 }

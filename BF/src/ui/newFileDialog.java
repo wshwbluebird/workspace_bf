@@ -49,6 +49,7 @@ public class newFileDialog extends JDialog implements ActionListener{
 			
 				if(!"".equals(input.trim())){
 				MainFrame2.CurrentFileName = input;
+				MainFrame2.filename.setText(MainFrame2.CurrentFileName);
 							
 				}else{
 					JOptionPane.showMessageDialog(null, "file name can not be blank",
