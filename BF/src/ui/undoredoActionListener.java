@@ -13,7 +13,7 @@ public class undoredoActionListener implements ActionListener {
 		System.out.println("pointer    "+MainFrame2.urcontrol.pointer);
 		String cmd = e.getActionCommand();
 		System.out.println("++");
-		if(cmd.equals("undo")&&MainFrame2.urcontrol.pointer>1){
+		if(cmd.equals("undo")&&MainFrame2.urcontrol.pointer>1&&MainFrame2.loginState){
 			try {
 				MainFrame2.urcontrol.pointer--;
 				System.out.println("--");
@@ -30,7 +30,7 @@ public class undoredoActionListener implements ActionListener {
 			}
 			MainFrame2.urcontrol.checkredo();
 			MainFrame2.urcontrol.checkundo();
-		}else if(cmd.equals("redo")&&MainFrame2.urcontrol.checkredo()){
+		}else if(cmd.equals("redo")&&MainFrame2.urcontrol.checkredo()&&MainFrame2.loginState){
 			try {
 				String text =  RemoteHelper.getInstance().getTempService()
 						.getPointFile(++MainFrame2.urcontrol.pointer);

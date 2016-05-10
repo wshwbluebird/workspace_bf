@@ -59,7 +59,7 @@ public class TempServiceImpl implements TempService{
 				System.out.println(content);
 				bf.close();
 				fr.close();
-				return content;
+				return content.substring(0,content.length()-1);
 			} catch (IOException e) {
 				e.printStackTrace();
 				return "####nothing^^";

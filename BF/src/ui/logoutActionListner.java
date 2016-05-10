@@ -19,6 +19,7 @@ public class logoutActionListner implements ActionListener {
 		MainFrame2.resultLabel.setText("result");
 		MainFrame2.openMenuItem.removeAll();
 		MainFrame2.versionMenu.removeAll();
+		MainFrame2.filename.setText("filename");
 
 	}
 

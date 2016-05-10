@@ -118,7 +118,7 @@ public class MainFrame2 extends JFrame {
 		 //***************************************************
         JPanel middlepanel  = new JPanel(null); 
         frame.add(middlepanel, BorderLayout.CENTER);
-        filename.setBounds(0,0,50,20);
+        filename.setBounds(0,0,100,20);
         textAreacode.setBounds(0, 20,500,180);
         IOpanel.setBounds(0,200,450,180);
         JLabel inputlable = new JLabel("Input");

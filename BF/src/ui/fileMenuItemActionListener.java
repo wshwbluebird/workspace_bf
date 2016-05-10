@@ -23,6 +23,7 @@ public class fileMenuItemActionListener implements ActionListener {
 			MainFrame2.textAreacode.setText("");
 			MainFrame2.urcontrol = new undoredoController();
 			System.out.println("new make");
+			
 		}
 	}
 }

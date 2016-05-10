@@ -12,7 +12,7 @@ public class changecheck implements KeyListener{
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(MainFrame2.threadflag){
+		if(MainFrame2.threadflag&&!(e.getKeyChar()=='\n')){
 			temp1 = MainFrame2.textAreacode.getText();
 			
 			MainFrame2.fileedit.setText("edit");

@@ -21,6 +21,7 @@ public class fileOpenmake implements ActionListener{
   				String t = RemoteHelper.getInstance().getIOService().readFile(MainFrame2.username, last);
   				System.out.println("text:    "+t);
   				MainFrame2.textAreacode.setText(t);
+  				MainFrame2.filename.setText(MainFrame2.CurrentFileName);
   				MainFrame2.urcontrol = new undoredoController();
   				System.out.println("opne make");
   			}
