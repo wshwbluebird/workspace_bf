@@ -13,6 +13,7 @@ public class undoredoController {
 		pointer = 0;
 		MainFrame2.textAreacode.addKeyListener(new changecheck());
 		try {
+			System.out.println("bbbbbbbbbbbbbbb\naaaaaaaaa");
 			String code = MainFrame2.textAreacode.getText();
 			RemoteHelper.getInstance().getTempService().createTempFile(code, ++pointer);
 			maxpointer++;
@@ -44,6 +45,19 @@ public class undoredoController {
 		}else {
 			MainFrame2.redo.setForeground(Color.gray);
 			return false;
+		}
+	}
+	public void refresh(){
+		this.maxpointer = 0;
+		this.pointer = 0;
+//		MainFrame2.textAreacode.addKeyListener(new changecheck());
+		try {
+			String code = MainFrame2.textAreacode.getText();
+			RemoteHelper.getInstance().getTempService().createTempFile(code, ++pointer);
+			maxpointer++;
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 }

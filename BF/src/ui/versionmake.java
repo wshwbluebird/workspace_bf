@@ -39,7 +39,7 @@ public class versionmake implements ActionListener{
 						 .versionRead(MainFrame2.username,MainFrame2.CurrentFileName, versionname);
 				MainFrame2.textAreacode.setText(content);
 				MainFrame2.resultLabel.setText("result");
-				MainFrame2.urcontrol = new undoredoController();
+				MainFrame2.urcontrol.refresh();
 				System.out.println("make versionmake acl");
 			} catch (RemoteException e1) {
 				// TODO Auto-generated catch block

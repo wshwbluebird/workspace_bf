@@ -56,7 +56,7 @@ public class MainFrame2 extends JFrame {
 	static newFileDialog newfileD;
 	static String CurrentFileName;
 	static boolean threadflag = true;
-	static undoredoController urcontrol ;
+	static undoredoController urcontrol;
 	public  MainFrame2() {
 		// 创建窗体
 		JFrame frame = new JFrame("BF Client");
@@ -154,7 +154,7 @@ public class MainFrame2 extends JFrame {
 		logout.addActionListener(new logoutActionListner());
 		undo.addActionListener(new undoredoActionListener());
 		redo.addActionListener(new undoredoActionListener());
-		
+		urcontrol= new undoredoController();
 		
 	}
 

@@ -22,7 +22,7 @@ public class fileOpenmake implements ActionListener{
   				System.out.println("text:    "+t);
   				MainFrame2.textAreacode.setText(t);
   				MainFrame2.filename.setText(MainFrame2.CurrentFileName);
-  				MainFrame2.urcontrol = new undoredoController();
+  				MainFrame2.urcontrol.refresh();
   				System.out.println("opne make");
   			}
 			fileListInfo = RemoteHelper.getInstance().getIOService().readFileList(MainFrame2.username);
@@ -56,7 +56,7 @@ public class fileOpenmake implements ActionListener{
 		}
 		MainFrame2.textAreacode.setText(value);
 		MainFrame2.resultLabel.setText("result");
-		MainFrame2.urcontrol = new undoredoController();
+		MainFrame2.urcontrol.refresh();;
 		new versionmake();
 		
 	}
