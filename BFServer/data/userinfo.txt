@@ -1,4 +1,4 @@
-admin;6666
+admin;123456a
 bluebird;buzhidao
 bluebird32;1234
 crazy;aaa

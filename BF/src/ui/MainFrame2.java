@@ -140,6 +140,7 @@ public class MainFrame2 extends JFrame {
  		frame.setSize(500, 400);
 		frame.setLocation(400, 200);
 		frame.setVisible(true);
+		frame.setResizable(false);
 	    undo.setForeground(Color.gray);
 	    redo.setForeground(Color.gray);
 		
