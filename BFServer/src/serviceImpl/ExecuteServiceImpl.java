@@ -1,4 +1,4 @@
-//请不要修改本文件名
+//璇蜂笉瑕佷慨鏀规湰鏂囦欢鍚�
 package serviceImpl;
 
 import java.rmi.RemoteException;
@@ -9,7 +9,7 @@ import service.UserService;
 public class ExecuteServiceImpl implements ExecuteService {
 
 	/**
-	 * 请实现该方法
+	 * 璇峰疄鐜拌鏂规硶
 	 */
 	@Override
 	public String execute(String code, String param) throws RemoteException {
@@ -21,6 +21,18 @@ public class ExecuteServiceImpl implements ExecuteService {
 		long much = code.chars().mapToLong(t->t=='>'?1:0).sum();
 		char[] inputvalue = param.toCharArray();
 		char[] charvalue = new char[(int) much];
+		int[] left = new int[code.length()];
+		int[] loc = new int[code.length()];
+		int rear = 0;
+		for (int i = 0; i < code.length(); i++) {
+			if(code.charAt(i)=='[')  left[rear++]  = i;
+			else if(code.charAt(i)==']') {
+				loc[i] = left[--rear];
+				loc[loc[i]] = i;
+			}
+			
+			
+		}
 		int pointer = 0;
 		int index = 0;
 		int inputindex=0;
@@ -41,10 +53,10 @@ public class ExecuteServiceImpl implements ExecuteService {
 				ans+=charvalue[pointer];
 			}else if('['==(chararray[index]) ){
 				if(charvalue[pointer]==0){
-					while(chararray[++index]!=']');
+					index = loc[index];
 				}
 			}else if(']'==(chararray[index]) ){				
-					while(chararray[index--]!='[');				
+				   index = loc[index]-1;				
 			}
 			 
 			index++;
