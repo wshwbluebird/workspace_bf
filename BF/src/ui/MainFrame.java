@@ -22,41 +22,49 @@ public class MainFrame extends JFrame {
 	private JLabel resultLabel;
 
 	public MainFrame() {
-		// 创建窗体
+		// 鍒涘缓绐椾綋
 		JFrame frame = new JFrame("BF Client");
-		frame.setLayout(new BorderLayout());
-
-		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu = new JMenu("File");
-		JMenu executeMenu = new JMenu("Run");
-		JMenu login = new JMenu("login");
-//		login.setl
-//		menuBar.add(fileMenu);
-		menuBar.add(executeMenu);
-		JMenuItem newMenuItem = new JMenuItem("New");
-		fileMenu.add(newMenuItem);
-		JMenuItem openMenuItem = new JMenuItem("Open");
-		fileMenu.add(openMenuItem);
-		JMenuItem saveMenuItem = new JMenuItem("Save");
-		fileMenu.add(saveMenuItem);
-		JMenuItem runMenuItem = new JMenuItem("Run");
-		fileMenu.add(runMenuItem);
-		frame.setJMenuBar(menuBar);
-
-		newMenuItem.addActionListener(new fileMenuItemActionListener());
-		openMenuItem.addActionListener(new fileMenuItemActionListener());
-		saveMenuItem.addActionListener(new SaveActionListener());
-		runMenuItem.addActionListener(new fileMenuItemActionListener());
-
+		frame.setLayout(null);
+		
+		frame.setLocation(400, 200);
+		
 		textArea = new JTextArea();
-		textArea.setMargin(new Insets(10, 10, 10, 10));
-		textArea.setBackground(Color.LIGHT_GRAY);
-		frame.add(textArea, BorderLayout.CENTER);
+		textArea.setBounds(20, 20, frame.getHeight()/2, frame.getWidth()/2);
+		textArea.setBackground(Color.blue);
+		frame.add(textArea);
+		frame.setSize(500, 400);
 
-		// 显示结果
-		resultLabel = new JLabel();
-		resultLabel.setText("result");
-		frame.add(resultLabel, BorderLayout.SOUTH);
+//		JMenuBar menuBar = new JMenuBar();
+//		JMenu fileMenu = new JMenu("File");
+//		JMenu executeMenu = new JMenu("Run");
+//		JMenu login = new JMenu("login");
+////		login.setl
+////		menuBar.add(fileMenu);
+//		menuBar.add(executeMenu);
+//		JMenuItem newMenuItem = new JMenuItem("New");
+//		fileMenu.add(newMenuItem);
+//		JMenuItem openMenuItem = new JMenuItem("Open");
+//		fileMenu.add(openMenuItem);
+//		JMenuItem saveMenuItem = new JMenuItem("Save");
+//		fileMenu.add(saveMenuItem);
+//		JMenuItem runMenuItem = new JMenuItem("Run");
+//		fileMenu.add(runMenuItem);
+//		frame.setJMenuBar(menuBar);
+//
+//		newMenuItem.addActionListener(new fileMenuItemActionListener());
+//		openMenuItem.addActionListener(new fileMenuItemActionListener());
+//		saveMenuItem.addActionListener(new SaveActionListener());
+//		runMenuItem.addActionListener(new fileMenuItemActionListener());
+//
+//		textArea = new JTextArea();
+//		textArea.setMargin(new Insets(10, 10, 10, 10));
+//		textArea.setBackground(Color.LIGHT_GRAY);
+//		frame.add(textArea, BorderLayout.CENTER);
+//
+//		// 鏄剧ず缁撴灉
+//		resultLabel = new JLabel();
+//		resultLabel.setText("result");
+//		frame.add(resultLabel, BorderLayout.SOUTH);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 400);
@@ -66,7 +74,7 @@ public class MainFrame extends JFrame {
 
 	class fileMenuItemActionListener implements ActionListener {
 		/**
-		 * 子菜单响应事件
+		 * 瀛愯彍鍗曞搷搴斾簨浠�
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -90,17 +98,5 @@ public class MainFrame extends JFrame {
 		}
 	}
 
-	class SaveActionListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			String code = textArea.getText();
-			try {
-				RemoteHelper.getInstance().getIOService().writeFile(code, "admin", "code");
-			} catch (RemoteException e1) {
-				e1.printStackTrace();
-			}
-		}
-
-	}
+	
 }

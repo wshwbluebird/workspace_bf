@@ -2,31 +2,15 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.ComponentOrientation;
-import java.awt.FlowLayout;
 import java.awt.Insets;
-import java.awt.MenuItem;
-import java.awt.Panel;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyListener;
-import java.rmi.RemoteException;
 
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-
-import rmi.RemoteHelper;
 
 
 
@@ -60,6 +44,8 @@ public class MainFrame2 extends JFrame {
 	public  MainFrame2() {
 		// 鍒涘缓绐椾綋
 		JFrame frame = new JFrame("BF Client");
+		frame.setSize(500, 400);
+		System.out.println(frame.getHeight());
 		frame.setLayout(new BorderLayout());	
 		JPanel MenuBarPanel = new JPanel();
 		frame.add(MenuBarPanel,BorderLayout.NORTH);
@@ -99,6 +85,7 @@ public class MainFrame2 extends JFrame {
 		textAreacode.setMargin(new Insets(10, 10, 10, 10));
 		textAreacode.setBackground(Color.LIGHT_GRAY);
 		textAreacode.setText("");
+		textAreacode.setLineWrap(true);
 		JPanel IOpanel  = new JPanel(null);
 	
 		IOpanel.setSize(400,100);
@@ -107,7 +94,7 @@ public class MainFrame2 extends JFrame {
 		textAreainput.setBackground(Color.black);
 		textAreainput.setForeground(Color.white);
 		textAreainput.setCaretColor(Color.white);
-		IOpanel.add(textAreainput);
+		IOpanel.add(textAreainput);//IOpanel  加载了 IO内容的 输入 和结果的版面
 		resultLabel = new JTextArea();
 		resultLabel.setBackground(Color.black);
 		resultLabel.setForeground(Color.white);
@@ -137,10 +124,10 @@ public class MainFrame2 extends JFrame {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     //frame.pack();
- 		frame.setSize(500, 400);
+ 		
 		frame.setLocation(400, 200);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 	    undo.setForeground(Color.gray);
 	    redo.setForeground(Color.gray);
 		
