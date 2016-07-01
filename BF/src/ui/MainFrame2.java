@@ -3,6 +3,7 @@ package ui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Insets;
+import java.beans.FeatureDescriptor;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ public class MainFrame2 extends JFrame {
 	/**
 	 * 
 	 */
+	static JFrame frame ;
 	static JTextArea textAreacode;
 	static JTextArea textAreainput;
 	static JTextArea resultLabel;
@@ -26,9 +28,12 @@ public class MainFrame2 extends JFrame {
 	static JLabel fileedit = new JLabel("null");
     static JMenu login;
 	static JMenu openMenuItem;
+	static JMenu debug = new JMenu("Debug");   //设置标签
 	static JMenuItem signin = new JMenuItem("sign in");
 	static JMenuItem signup = new JMenuItem("sign up");
 	static JMenuItem logout = new JMenuItem("logout");
+	static JMenuItem dodebug = new JMenuItem("debug");
+	static JMenuItem exitdebug = new JMenuItem("exit");
 	static JMenu versionMenu = new JMenu("Version");
 	static JMenu tool = new JMenu("Tool");
 	static JMenuItem undo = new JMenuItem("undo");
@@ -41,9 +46,12 @@ public class MainFrame2 extends JFrame {
 	static String CurrentFileName;
 	static boolean threadflag = true;
 	static undoredoController urcontrol;
+	
+	static DebugPanel debugpanel;;
 	public  MainFrame2() {
 		// 鍒涘缓绐椾綋
-		JFrame frame = new JFrame("BF Client");
+		
+	    frame = new JFrame("BF Client");
 		frame.setSize(500, 400);
 		System.out.println(frame.getHeight());
 		frame.setLayout(new BorderLayout());	
@@ -53,31 +61,41 @@ public class MainFrame2 extends JFrame {
 		JMenuBar menuBarright = new JMenuBar();
 		MenuBarPanel.add(menuBarleft);
 		MenuBarPanel.add(menuBarright);
+		
 		JMenu fileMenu = new JMenu("File");
-		JMenu runMenu = new JMenu("Run");		
+		JMenu runMenu = new JMenu("Run");	
+		
 		login = new JMenu();	
 		login.setText("login");
 		login.add(signin);
 		login.add(signup);
+		
 		menuBarleft.add(fileMenu);
 		menuBarleft.add(runMenu);
 		menuBarleft.add(versionMenu);
 		menuBarleft.add(tool);
+		menuBarleft.add(debug);
 		menuBarright.add(login);
+		
+		
 		JMenuItem newMenuItem = new JMenuItem("New");
 		fileMenu.add(newMenuItem);
 		openMenuItem = new JMenu("Open");
 		fileMenu.add(openMenuItem);
+		
 		JMenuItem file1 = new JMenuItem("file1");
 		JMenuItem file2 = new JMenuItem("file2");
 		JMenuItem file3 = new JMenuItem("file3");
+		
 		openMenuItem.add(file1);
 		openMenuItem.add(file2);
 		openMenuItem.add(file3);
+		
 		JMenuItem saveMenuItem = new JMenuItem("Save");
 		fileMenu.add(saveMenuItem);
 		JMenuItem executeMenuItem = new JMenuItem("Execute");
 		runMenu.add(executeMenuItem);
+		
 		tool.add(undo);
 		tool.add(redo);
 		textAreacode = new JTextArea();
@@ -88,7 +106,9 @@ public class MainFrame2 extends JFrame {
 		textAreacode.setLineWrap(true);
 		JPanel IOpanel  = new JPanel(null);
 	
-		IOpanel.setSize(400,100);
+		//IOpanel.setSize(400,100);
+		System.out.println(frame.getHeight());
+		IOpanel.setSize(frame.getWidth(), frame.getHeight()/4);
 		textAreainput = new JTextArea();
 		//textAreainput.setMargin(new Insets(10, 10, 10, 10));
 		textAreainput.setBackground(Color.black);
@@ -114,9 +134,15 @@ public class MainFrame2 extends JFrame {
         outputlable.setBounds(225,0,50,20);
         textAreainput.setBounds(0,20,220,170);
         resultLabel.setBounds(225,20, 220, 170);
+        
         middlepanel.add(filename);
         middlepanel.add(textAreacode);
         middlepanel.add(IOpanel);
+        
+        debug.add(dodebug);
+        debug.add(exitdebug);
+        
+        
         IOpanel.add(inputlable);
         IOpanel.add(outputlable);
         frame.add(fileedit,BorderLayout.SOUTH);
@@ -125,14 +151,16 @@ public class MainFrame2 extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     //frame.pack();
  		
-		frame.setLocation(400, 200);
-		frame.setVisible(true);
-		frame.setResizable(true);
+		
 	    undo.setForeground(Color.gray);
 	    redo.setForeground(Color.gray);
 		
-		
-		
+	    MainFrame2.exitdebug.setForeground(Color.GRAY);
+	    //设置frame的基本信息
+		frame.setLocation(400, 200);
+		frame.setVisible(true);
+		frame.setResizable(false);
+		//frame.pack();
 		//闆嗕腑鍔犱簨浠剁洃鍚櫒
 		newMenuItem.addActionListener(new fileMenuItemActionListener());
 		executeMenuItem.addActionListener(new codeExecutedActionListenrer());
@@ -142,7 +170,11 @@ public class MainFrame2 extends JFrame {
 		logout.addActionListener(new logoutActionListner());
 		undo.addActionListener(new undoredoActionListener());
 		redo.addActionListener(new undoredoActionListener());
-		urcontrol= new undoredoController();
+		
+		dodebug.addActionListener(new dodebugActionListenner());
+//		exitdebug.addActionListener(new exitdebugActionListener());
+		//暂时关闭  撤销重做系统
+		//urcontrol= new undoredoController();
 		
 	}
 
