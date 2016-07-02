@@ -2,7 +2,9 @@ package ui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Insets;
+import java.awt.ScrollPane;
 import java.beans.FeatureDescriptor;
 
 import javax.swing.JFrame;
@@ -11,12 +13,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 
 
 
 public class MainFrame2 extends JFrame {
+	private static final Component sqAreacode = null;
 	/**
 	 * 
 	 */
@@ -98,16 +102,18 @@ public class MainFrame2 extends JFrame {
 		
 		tool.add(undo);
 		tool.add(redo);
+		
 		textAreacode = new JTextArea();
 		//textAreacode.setSize(200,200);
 		textAreacode.setMargin(new Insets(10, 10, 10, 10));
 		textAreacode.setBackground(Color.LIGHT_GRAY);
 		textAreacode.setText("");
 		textAreacode.setLineWrap(true);
+		JScrollPane sqcodeArea = new JScrollPane(textAreacode);
 		JPanel IOpanel  = new JPanel(null);
 	
 		//IOpanel.setSize(400,100);
-		System.out.println(frame.getHeight());
+		//System.out.println(frame.getHeight());
 		IOpanel.setSize(frame.getWidth(), frame.getHeight()/4);
 		textAreainput = new JTextArea();
 		//textAreainput.setMargin(new Insets(10, 10, 10, 10));
@@ -126,7 +132,11 @@ public class MainFrame2 extends JFrame {
         JPanel middlepanel  = new JPanel(null); 
         frame.add(middlepanel, BorderLayout.CENTER);
         filename.setBounds(0,0,100,20);
-        textAreacode.setBounds(0, 20,500,180);
+        //textAreacode.setBounds(0, 20,500,180);
+        sqcodeArea.setBounds(0, 20,500,180);
+        
+        
+        
         IOpanel.setBounds(0,200,450,180);
         JLabel inputlable = new JLabel("Input");
         JLabel outputlable = new JLabel("Output");
@@ -136,7 +146,8 @@ public class MainFrame2 extends JFrame {
         resultLabel.setBounds(225,20, 220, 170);
         
         middlepanel.add(filename);
-        middlepanel.add(textAreacode);
+        //middlepanel.add(textAreacode);
+        middlepanel.add(sqcodeArea);
         middlepanel.add(IOpanel);
         
         debug.add(dodebug);
@@ -174,7 +185,7 @@ public class MainFrame2 extends JFrame {
 		dodebug.addActionListener(new dodebugActionListenner());
 //		exitdebug.addActionListener(new exitdebugActionListener());
 		//暂时关闭  撤销重做系统
-		//urcontrol= new undoredoController();
+		urcontrol= new undoredoController();
 		
 	}
 

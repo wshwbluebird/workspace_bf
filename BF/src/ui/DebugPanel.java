@@ -20,6 +20,8 @@ public class DebugPanel extends JFrame  implements ActionListener{
 	JMenuBar bar;
 	JButton next = new JButton("next");
 	JButton nextR = new JButton("next register");
+	JButton restart = new JButton("Restart");
+	JButton quit = new JButton("Quit");
 	JScrollPane sqcodeArea;
 	JScrollPane sqinputArea;
 	JScrollPane sqoutputArea;
@@ -58,6 +60,8 @@ public class DebugPanel extends JFrame  implements ActionListener{
 		bar  = new JMenuBar();
 		bar.add(next);
 		bar.add(nextR);
+		bar.add(restart);
+		bar.add(quit);
 		System.out.println(MainFrame2.textAreacode.getText());
 		System.out.println("dsfd:"+ textinput);
 		JTextArea codeArea = new JTextArea("");
@@ -114,6 +118,8 @@ public class DebugPanel extends JFrame  implements ActionListener{
 		
 		next.addActionListener(this);
 		nextR.addActionListener(this);
+		restart.addActionListener(this);
+		quit.addActionListener(new exitdebugActionListener());
 		
 		
 		
@@ -150,7 +156,19 @@ public class DebugPanel extends JFrame  implements ActionListener{
 			    	   debugging();
 			       }
 			      changehighlight();
+		}else if(e.getSource()==restart){
+			codepos = 0;
+			currentregpos = 0;
+			maxreg = 0;
+			inputpos = 0;
+			textregiser = "[0]";
+			registerArea.setText(textregiser);
+			textoutput = "";
+			outputArea.setText(textoutput);
+			changehighlight();
 		}
+		
+		
 	}
 	
 	
@@ -169,7 +187,6 @@ public class DebugPanel extends JFrame  implements ActionListener{
 	         reglighter.removeAllHighlights();
 	         reglighter.addHighlight(getleft(),getright()+1, light);
            } catch (BadLocationException e1) {
-	         // TODO Auto-generated catch block
 	         //e1.printStackTrace();
            }	
 	}
