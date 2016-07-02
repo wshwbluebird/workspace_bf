@@ -37,7 +37,7 @@ public class DebugPanel extends JFrame  implements ActionListener{
 			
 	
 	DefaultHighlighter.DefaultHighlightPainter light = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);
-	
+	 
 	int codepos = 0;
 	int inputpos = 0;
 	int currentregpos = 0;
