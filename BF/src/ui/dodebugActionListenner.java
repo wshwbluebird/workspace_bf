@@ -14,7 +14,7 @@ public class dodebugActionListenner implements ActionListener {
 		MainFrame2.exitdebug.setForeground(Color.BLACK);
 		MainFrame2.debugpanel = new DebugPanel(MainFrame2.textAreacode.getText(),MainFrame2.textAreainput.getText());
 		MainFrame2.debugpanel.setSize(500,350);
-		//MainFrame2.frame.add(MainFrame2.debugpanel);
+		
 		
 	
 	

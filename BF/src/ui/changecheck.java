@@ -10,14 +10,16 @@ public class changecheck implements KeyListener{
 	String temp1 ;
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		// 检测 每个子母被敲击
 		
 		if(MainFrame2.threadflag&&!(e.getKeyChar()=='\n')){
 			temp1 = MainFrame2.textAreacode.getText();
 			
 			MainFrame2.fileedit.setText("edit");
+			
 			mythread  t= new mythread();
 			Thread t1 = new Thread(t);
+			
 			t1.start();
 		}
 			  

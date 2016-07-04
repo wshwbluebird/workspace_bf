@@ -20,7 +20,7 @@ public class ExecuteServiceImpl implements ExecuteService {
 		else{
 		long much = code.chars().mapToLong(t->t=='>'?1:0).sum();
 		char[] inputvalue = param.toCharArray();
-		char[] charvalue = new char[(int) much];
+		char[] charvalue = new char[(int) much+5];
 		int[] left = new int[code.length()];
 		int[] loc = new int[code.length()];
 		int rear = 0;

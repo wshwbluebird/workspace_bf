@@ -124,9 +124,13 @@ public class IOServiceImpl implements IOService{
 		return filelist;
 	}
 
+	
+	
+     // 如果传过来的是 用户名名.xml    读取上一次打开的 文件名
 	@Override
 	public String controlRead(String userId, String fileName) throws RemoteException {
 		System.out.println("here");
+	    //读取上一次打开的 文件名
 		if("xml".equals(fileName)){
 			File filexml = new File("data/"+userId+"/"+userId+".xml");
 			if(!filexml.exists()){
@@ -137,7 +141,7 @@ public class IOServiceImpl implements IOService{
 			try {
 				FileReader fr = new FileReader(filexml);
 				BufferedReader bf = new BufferedReader(fr);
-				line = bf.readLine();
+				line = bf.readLine();  // 该文件  就一个一行  就一个文件名
 				bf.close();
 				fr.close();
 			} catch (IOException e) {
@@ -147,20 +151,21 @@ public class IOServiceImpl implements IOService{
 			System.out.println("line:"+line);
 			return line;
 		}else{
+			//否则读取  这个文件的 所有版本名 并且 用字符串传回去
 			String filelist;
 			List<File> files =
-	 			   Stream.of(new File("data/"+userId+"/"+fileName).listFiles())
-	 			   .filter(t->!t.isDirectory()&&!t.isHidden()&&!t.getName().endsWith(".xml"))
-	 			   .flatMap(file -> file.listFiles() == null ?
+	 			   Stream.of(new File("data/"+userId+"/"+fileName).listFiles())   //到这个文件版本控制的 文件夹中
+	 			   .filter(t->!t.isDirectory()&&!t.isHidden()&&!t.getName().endsWith(".xml"))//xml 文件跟版本控制文件 存在一起 所以要排除这个文件
+	 			   .flatMap(file -> file.listFiles() == null ? //看映射完是否为空
 	 			   Stream.of(file) : Stream.of(file.listFiles()))
 	 			   .collect(Collectors.toList());
 	 	            filelist= files.stream().map(t->t.getName())
-	 	            		.map(t->t.substring(0,t.length()-4))
+	 	            		.map(t->t.substring(0,t.length()-4)) //吧文件末尾的.txt 删掉
 	               .collect(Collectors.joining(";"));
 	 	            System.out.println("filelist:  "+ filelist);
 	 	            if(filelist.length()>95) {
                         System.out.println(filelist.substring(filelist.length()-95, filelist.length()));
-			            return filelist.substring(filelist.length()-95, filelist.length());
+			            return filelist.substring(filelist.length()-95, filelist.length());  //取前十个  用分号隔开并且传过来
 	 	            }else return filelist;
 		}
 		
@@ -168,7 +173,7 @@ public class IOServiceImpl implements IOService{
 
 	@Override
 	public String versionRead(String userId, String fileName,String version) throws RemoteException {
-		// TODO Auto-generated method stub
+		// 读取版本控制的文件
 		File f = new File("data/"+userId +"/"+ fileName+"/"+version+".txt");
 		String content ="";
 		String line;

@@ -236,6 +236,12 @@ public class DebugPanel extends JFrame  implements ActionListener{
 				registerArea.setText(textregiser);
 			}else if(','==(chararray[codepos]) ){
 				charvalue[currentregpos]=inputvalue[inputpos++];
+				int temp = Integer.parseInt(textregiser.substring(getleft()+1,getright()));
+				System.out.println("temp before: "+temp);
+				temp=charvalue[currentregpos];
+				textregiser = textregiser.substring(0,getleft()+1)+String.valueOf(temp)+textregiser.substring(getright());
+				System.out.println(textregiser);
+				registerArea.setText(textregiser);
 			}else if('.'==(chararray[codepos]) ){
 				//System.out.print(charvalue[pointer])
 				textoutput+=charvalue[currentregpos];

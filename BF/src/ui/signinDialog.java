@@ -1,3 +1,5 @@
+
+
 package ui;
 
 import java.awt.Frame;
@@ -20,13 +22,14 @@ public class signinDialog extends JDialog implements ActionListener{
     private JLabel label2 = new JLabel("password");
     private JTextField userIdtext = new JTextField(50);
     private JPasswordField passwordtext = new JPasswordField(50);
-    private JButton affirm = new JButton("affirm");
+    private JButton affirm = new JButton("affirm");  //确认按钮 的事件监听
     private JButton cancel = new JButton("cancle");
     private String userId="";
     private String password="";
     
     public signinDialog() {
     	 //super(parent,modal);
+    	//对话框的 样子   
          setTitle("Sign in BF ide");
          setSize(260,140);
          setResizable(false);
@@ -56,17 +59,21 @@ public class signinDialog extends JDialog implements ActionListener{
 			
 			userId = userIdtext.getText();
 			password = passwordtext.getText();
+			//读取用户输入饿用户名 密码
 			try {
+				//调用服务器方法进行判定
 				if(RemoteHelper.getInstance().getUserService().login(userId, password)){
 					JOptionPane.showMessageDialog(null, "Welcome  "+userId,
 							"sign in successful",  JOptionPane.PLAIN_MESSAGE); 
 				MainFrame2.username = userId;
 				MainFrame2.loginState = true;
+				
+				//main frame 中的组建 替换
 				MainFrame2.login.setText(MainFrame2.username);
 				MainFrame2.login.remove(MainFrame2.signin);
 				MainFrame2.login.remove(MainFrame2.signup);
 				MainFrame2.login.add(MainFrame2.logout);
-				
+				//需要打开 上次的文件   以及按钮的添加更改
 				new fileOpenmake();
     			
 				}else{

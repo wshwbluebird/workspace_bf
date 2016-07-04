@@ -11,8 +11,7 @@ public class exitdebugActionListener implements ActionListener{
 		MainFrame2.debugpanel.setVisible(false);
 		MainFrame2.debugpanel = null;
 		MainFrame2.exitdebug.setForeground(Color.GRAY);
-//		MainFrame2.textAreacode.setVisible(true);
-//		MainFrame2.textAreainput.setVisible(true);
+
 		
 	}
 

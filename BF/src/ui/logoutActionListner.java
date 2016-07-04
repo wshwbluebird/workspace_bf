@@ -7,6 +7,8 @@ public class logoutActionListner implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		
+		//   将界面 恢复到 没有登陆之间饿初始状态
 		MainFrame2.username="";
 		MainFrame2.CurrentFileName="";
 		MainFrame2.loginState=false;

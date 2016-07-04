@@ -24,19 +24,23 @@ public class MainFrame2 extends JFrame {
 	/**
 	 * 
 	 */
-	static JFrame frame ;
-	static JTextArea textAreacode;
-	static JTextArea textAreainput;
-	static JTextArea resultLabel;
+	static JFrame frame ;    //标准的框架
+	
+	static JTextArea textAreacode;  //输入代码
+	static JTextArea textAreainput; //BF输入区
+	static JTextArea resultLabel;  // 用于显示输出结果的 标签区域
+	
 	static JLabel filename = new JLabel("File");
 	static JLabel fileedit = new JLabel("null");
+	
     static JMenu login;
 	static JMenu openMenuItem;
+	
 	static JMenu debug = new JMenu("Debug");   //设置标签
 	static JMenuItem signin = new JMenuItem("sign in");
 	static JMenuItem signup = new JMenuItem("sign up");
 	static JMenuItem logout = new JMenuItem("logout");
-	static JMenuItem dodebug = new JMenuItem("debug");
+	static JMenuItem dodebug = new JMenuItem("debug");    
 	static JMenuItem exitdebug = new JMenuItem("exit");
 	static JMenu versionMenu = new JMenu("Version");
 	static JMenu tool = new JMenu("Tool");
@@ -47,25 +51,32 @@ public class MainFrame2 extends JFrame {
 	static signinDialog  signinD;
 	static signupDialog  signupD;
 	static newFileDialog newfileD;
-	static String CurrentFileName;
-	static boolean threadflag = true;
-	static undoredoController urcontrol;
+	static String CurrentFileName; //当前 文件的名字
+	static boolean threadflag = true;  //用于对线程的优化
+	static undoredoController urcontrol; // 撤销重做的控制
 	
-	static DebugPanel debugpanel;;
+	static DebugPanel debugpanel;  //新的debug模块
+	
 	public  MainFrame2() {
-		// 鍒涘缓绐椾綋
 		
+		//设定 frame的基本信息
 	    frame = new JFrame("BF Client");
 		frame.setSize(500, 400);
 		System.out.println(frame.getHeight());
 		frame.setLayout(new BorderLayout());	
+		
+		
+		
+		
+		//设置一个 放menubar的panel
 		JPanel MenuBarPanel = new JPanel();
 		frame.add(MenuBarPanel,BorderLayout.NORTH);
+		//两个 bar  一左一右
 		JMenuBar menuBarleft = new JMenuBar();
 		JMenuBar menuBarright = new JMenuBar();
 		MenuBarPanel.add(menuBarleft);
 		MenuBarPanel.add(menuBarright);
-		
+		//添加menubar的子组建
 		JMenu fileMenu = new JMenu("File");
 		JMenu runMenu = new JMenu("Run");	
 		
@@ -103,8 +114,9 @@ public class MainFrame2 extends JFrame {
 		tool.add(undo);
 		tool.add(redo);
 		
+		//设使代码区的信息
 		textAreacode = new JTextArea();
-		//textAreacode.setSize(200,200);
+		
 		textAreacode.setMargin(new Insets(10, 10, 10, 10));
 		textAreacode.setBackground(Color.LIGHT_GRAY);
 		textAreacode.setText("");
@@ -114,6 +126,7 @@ public class MainFrame2 extends JFrame {
 	
 		//IOpanel.setSize(400,100);
 		//System.out.println(frame.getHeight());
+		//设置 一个的IOpanel 用来放置 输入 和 结果返回的部分 
 		IOpanel.setSize(frame.getWidth(), frame.getHeight()/4);
 		textAreainput = new JTextArea();
 		//textAreainput.setMargin(new Insets(10, 10, 10, 10));
@@ -129,6 +142,7 @@ public class MainFrame2 extends JFrame {
 		frame.add(IOpanel, BorderLayout.SOUTH);
 		IOpanel.setVisible(true);
 		 //***************************************************
+		//middle panel 用于放置文件名标签 和主要的那个代码区
         JPanel middlepanel  = new JPanel(null); 
         frame.add(middlepanel, BorderLayout.CENTER);
         filename.setBounds(0,0,100,20);
@@ -137,6 +151,7 @@ public class MainFrame2 extends JFrame {
         
         
         
+        //调整 各个区在 frame中的总大小
         IOpanel.setBounds(0,200,450,180);
         JLabel inputlable = new JLabel("Input");
         JLabel outputlable = new JLabel("Output");
@@ -162,7 +177,7 @@ public class MainFrame2 extends JFrame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	     //frame.pack();
  		
-		
+		//对一些按钮 设置初始的颜色
 	    undo.setForeground(Color.gray);
 	    redo.setForeground(Color.gray);
 		
@@ -172,19 +187,27 @@ public class MainFrame2 extends JFrame {
 		frame.setVisible(true);
 		frame.setResizable(false);
 		//frame.pack();
-		//闆嗕腑鍔犱簨浠剁洃鍚櫒
+		//为按钮添加事件监听器
+		//为new 按钮添加事件监听器
 		newMenuItem.addActionListener(new fileMenuItemActionListener());
+		//为执行按钮添加事件监听器
 		executeMenuItem.addActionListener(new codeExecutedActionListenrer());
+		//为保存 按钮添加事件监听器
 		saveMenuItem .addActionListener(new SaveActionListener());
+		//登陆
 		signin.addActionListener(new LoginActionListener());
+		//注册
 		signup.addActionListener(new LoginActionListener());
+		//登出
 		logout.addActionListener(new logoutActionListner());
+		//撤销重做的按钮 事件监听
 		undo.addActionListener(new undoredoActionListener());
 		redo.addActionListener(new undoredoActionListener());
 		
+		//为debug 按钮设置事件监听
 		dodebug.addActionListener(new dodebugActionListenner());
 //		exitdebug.addActionListener(new exitdebugActionListener());
-		//暂时关闭  撤销重做系统
+		//打开 撤销重做控制  对代码区代码的监听
 		urcontrol= new undoredoController();
 		
 	}

@@ -25,6 +25,7 @@ public class signupDialog extends JDialog implements ActionListener{
     
      public signupDialog() {
     	 //super(parent,modal);
+    	 //设置 窗体的样式
          setTitle("Sign up for BF ide");
          setSize(260,140);
          setResizable(false);
@@ -51,10 +52,14 @@ public class signupDialog extends JDialog implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==affirm){
+			
 			String userId = userIdtext.getText();
 			String password = passwordtext.getText();
+			//获取用户想要注册的用户名和密码
 			boolean succ;
 			try {
+				//调用 服务器方法 看注册是否合法
+				//如果服务器会直接创建这个新的  用户信息
 				succ = RemoteHelper.getInstance().getUserService().signup(userId, password);
 				if(succ){
 					JOptionPane.showMessageDialog(null, "sign up successful !",
