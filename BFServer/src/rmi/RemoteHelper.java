@@ -10,19 +10,19 @@ public class RemoteHelper {
 	public RemoteHelper(){
 		//System.out.println("df");
 		initServer();
-		System.out.println("df");
+		System.out.println("init finish");
 	}
 	
 	public void initServer(){
 		DataRemoteObject dataRemoteObject;
 		try {
 			dataRemoteObject = new DataRemoteObject();
-			System.out.println("dddddd");
+			System.out.println("ok1");
 			LocateRegistry.createRegistry(8888);
-			System.out.println("SAdas");
+			System.out.println("ok2");
 			Naming.bind("rmi://localhost:8888/DataRemoteObject",
 					dataRemoteObject);
-			System.out.println("ASd");
+			System.out.println("bind well");
 		
 		} catch (RemoteException e) {
 			e.printStackTrace();
